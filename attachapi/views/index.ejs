@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>File upload</title>
+    <style>
+        body {
+        font-family: 'Helvetica Neue', sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      #drop-zone {
+        width: 95%;
+        height: 130px;
+        border: 2px dashed gray;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>File upload</h3>
+    <div id="drop-zone">Drag and drop files here or click to upload</div>
+    <form id="upload-form" method="post" action="/upload" enctype="multipart/form-data" style="display: none;">
+      <input id="file-input" type="file" name="file">
+      <button type="submit">Submit</button>
+    </form>
+    <p>If the information is blank, please resubmit your file in 1 minute as the scan has not completed</p>
+    <div id="result-message"></div>
+    <script>
+      var dropZone = document.getElementById('drop-zone');
+      var fileInput = document.getElementById('file-input');
+      var uploadForm = document.getElementById('upload-form');
+
+      dropZone.addEventListener('dragover', function (event) {
+        event.preventDefault();
+        dropZone.style.backgroundColor = 'lightgray';
+      });
+
+      dropZone.addEventListener('dragleave', function (event) {
+        event.preventDefault();
+        dropZone.style.backgroundColor = '';
+      });
+
+      dropZone.addEventListener('drop', function (event) {
+        event.preventDefault();
+        dropZone.style.backgroundColor = '';
+        fileInput.files = event.dataTransfer.files;
+        uploadForm.style.display = 'block';
+      });
+
+      dropZone.addEventListener('click', function () {
+        fileInput.click();
+      });
+
+      fileInput.addEventListener('change', function () {
+        uploadForm.style.display = 'block';
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      .box {
+        display: inline-block;
+        padding: 5px;
+        margin: 0px;
+        border: 1px solid gray;
+        border-radius: 5px;
+        width: 100%;
+      } 
+      
+      h1 {
+        font-size: 24px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+      }
+
+      h2 {
+        font-size: 20px;
+        margin-top: 30px;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 16px;
+        line-height: 1.5;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      img {
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        max-width: 100%;
+      }
+
+ 
+      .success {
+      color: green;
+    }
+
+    .info {
+      color: blue;
+    }
+
+    .caution {
+      color: orange;
+    }
+
+    .warning {
+      color: yellow;
+    }
+
+    .danger {
+      color: red;
+    }
+    </style>
+  </head>
+  <body>
+    <br>
+    <div class="box box1">
+      <h1 class="<%= riskClass %>">Likely: <%= riskLevel %></h1>
+      <hr>
+      <h2><u>URL Scan Results:</u></h2>
+      <p><b><u>Domain:</b></u> "<%= urlscanDomain %>"</p>
+      <p><a href="<%= urlscanScreenshotLink %>" target="_blank">Screenshot of Link</a></p>
+      <img src="<%= urlscanScreenshotLink %>" alt="Screenshot" height="300">
+      <p><b><u>IP:</b></u> "<%= urlscanIP %>"</p>
+      <p>Click to view <a href="<%= urlscanURL %>" target="_blank">Raw Data</a></p>
+    </div>
+    <br>
+    <div class="box box2">
+      <h2>IP Quality Score Results:</h2>
+      <p><b><u>Unsafe:</u></b> <%= ipqualityscoreUnsafe %></p>
+      <p><b><u>Risk:</u></b> <%= ipqualityscoreRisk %></p>
+      <p>Click to view <a href="<%= ipqualityscoreURL %>" target="_blank">Raw Data</a></p>
+    </div>
+    <br>
+    <div class="box box3">
+      <h2>VirusTotal Results:</h2>
+      <p><b><u>Risk Score:</u></b> <%= virustotalPositives %>/<%= virustotalTotal %></p>
+      <p><b><u>Scan Link:</u></b> <a href="<%= virustotalpermalink %>" target="_blank">Virustotal Link</a></p>
+      <p>Click to view <a href="<%= virustotalURL %>" target="_blank">Raw Data</a></p>
+    </div>
+    <br>
+  </body>
+</html>

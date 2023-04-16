@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    #positives,
+    #total,
+    #sha,
+    #info,
+    #link{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin: 5px;
+    border: 1px #333;
+    border-radius: 10px;
+    background-color: #fff;
+    width: 95%;
+    max-width: 400px;
+    text-align: center;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    } 
+
+    .copy-btn {
+      cursor: pointer;
+      background-color: #6f6f6f;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      font-size: 14px;
+    }
+    
+.copy-btn {
+  margin: 3px; /* Add a 5px margin around each button */
+  padding: 1.2em 2.5em;
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  width: 65%;
+}
+
+.copy-btn:hover {
+  background-color: #23c483;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+.copy-btn:active {
+  transform: translateY(-1px);
+}
+  </style>
+  <head>
+    <meta charset="utf-8">
+    <title><%= title %></title>
+  </head>
+  <body>
+    <h1>Scan Result</h1>
+    <p id="link"><a href="<%= permalink %>" target="_blank">Link to scan</a>    </p>
+    <p id="positives">Positives:<br><%= positives %></p>
+    <p id="total">Total:<br><%= total %></p>
+    <p id="sha">SHA256:<br>
+      <button class="copy-btn" onclick="copyToClipboard('<%= sha256 %>')">Copy</button>
+    </p>
+    <p id="info">If information is blank, please wait 1 minute, reload the add in and resubmit the file, the scan should be complete by then</p>
+  </body>
+  <script>
+    function copyToClipboard(text) {
+      const el = document.createElement('textarea');
+      el.value = text;
+      el.setAttribute('readonly', '');
+      el.style.position = 'absolute';
+      el.style.left = '-9999px';
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+    }
+  </script>
+</html>
